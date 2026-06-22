@@ -1,0 +1,666 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arpita Singh – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --beige:    #F5F0E8;
+      --beige-dk: #EDE5D4;
+      --blue:     #1B3A6B;
+      --blue-lt:  #2E5BA8;
+      --blue-acc: #4A7FC1;
+      --black:    #0F0F0F;
+      --text:     #1A1A2E;
+      --muted:    #4A5568;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--beige);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--blue);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    }
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul li a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    nav ul li a:hover { color: #fff; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 8% 60px;
+      background: linear-gradient(135deg, var(--beige) 55%, #D6E4F7 100%);
+    }
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 6%;
+      max-width: 1100px;
+      margin: auto;
+      width: 100%;
+    }
+    .hero-text { flex: 1; }
+    .hero-text .tag {
+      display: inline-block;
+      background: var(--blue-acc);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+    }
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero-text h1 span { color: var(--blue-lt); }
+    .hero-text p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 460px;
+      margin-bottom: 2rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--blue-lt); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+    .btn-outline:hover { background: var(--blue); color: #fff; }
+
+    .hero-photo {
+      flex-shrink: 0;
+      width: min(320px, 42vw);
+      height: min(420px, 55vw);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(27,58,107,0.25);
+      border: 4px solid #fff;
+      position: relative;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .hero-photo::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 70%, rgba(27,58,107,0.15));
+      z-index: 1;
+    }
+
+    /* SECTIONS */
+    section { padding: 80px 8%; }
+    section:nth-child(even) { background: var(--beige-dk); }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue-acc);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .divider {
+      width: 56px; height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-acc));
+      border-radius: 2px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 1rem; }
+    .about-info { display: flex; flex-direction: column; gap: 1rem; }
+    .info-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 12px rgba(27,58,107,0.08);
+      border-left: 4px solid var(--blue-acc);
+    }
+    .info-card .icon {
+      width: 40px; height: 40px;
+      background: var(--blue);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .info-card .label { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+    .info-card .value { font-size: 0.95rem; font-weight: 600; color: var(--text); word-break: break-all; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .skill-chip {
+      background: #fff;
+      border: 2px solid var(--beige-dk);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .skill-chip:hover {
+      border-color: var(--blue-acc);
+      background: var(--blue);
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(27,58,107,0.18);
+    }
+    .skill-chip .skill-icon { font-size: 1.5rem; display: block; margin-bottom: 6px; }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 20px rgba(27,58,107,0.08);
+      border-top: 4px solid var(--blue-acc);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27,58,107,0.16); }
+    .project-card .level {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .level-beginner { background: #D1FAE5; color: #065F46; }
+    .level-intermediate { background: #DBEAFE; color: #1E40AF; }
+    .project-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+    .project-card p { font-size: 0.9rem; color: var(--muted); }
+
+    /* CONTACT */
+    #contact { background: var(--blue); }
+    #contact .section-label { color: var(--blue-acc); }
+    #contact .section-title { color: #fff; }
+    #contact .divider { background: linear-gradient(90deg, #fff, var(--blue-acc)); }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-info p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
+    .contact-detail {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 1.2rem;
+    }
+    .contact-detail .c-icon {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: #fff;
+      flex-shrink: 0;
+    }
+    .contact-detail span { color: rgba(255,255,255,0.85); font-size: 0.95rem; }
+    .contact-detail a { color: rgba(255,255,255,0.85); text-decoration: none; }
+    .contact-detail a:hover { color: #fff; text-decoration: underline; }
+
+    /* MAIL FORM */
+    .mail-form {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 32px 28px;
+    }
+    .mail-form h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--blue-acc); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .send-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue-acc), #5B9BD5);
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+    .send-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+    .send-btn:active { transform: none; }
+
+    .toast {
+      display: none;
+      background: #D1FAE5;
+      color: #065F46;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.85rem;
+    }
+    footer span { color: #fff; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-inner { flex-direction: column-reverse; text-align: center; }
+      .hero-photo { width: 220px; height: 280px; }
+      .hero-btns { justify-content: center; }
+      .hero-text p { margin: 0 auto 2rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+      nav ul { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Arpita Singh</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+        <span class="tag">Web Developer</span>
+    <h1>Hi, I'm<br><span>Arpita Singh</span></h1>
+<p>
+B.Tech Undergraduate | German Language Certified</p>
+<p>Passionate about programming, web development, and building innovative solutions that combine creativity with technology.
+</p>
+     <div class="hero-btns">
+  <a href="#projects" class="btn btn-primary">View Projects</a>
+
+  <a href="#contact" class="btn btn-outline">Contact Me</a>
+
+  <a href="https://linkedin.com/in/arpita-singh-1572ba360"
+     target="_blank"
+     class="btn btn-outline">
+     LinkedIn
+  </a>
+</div>
+    </div>
+    <div class="hero-photo">
+      <img src="WhatsApp Image 2026-06-15 at 11.56.05 AM.jpeg" alt="Arpita Singh"/>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <div class="section-title">About Me</div>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Hello! I'm Arpita Singh, a B.Tech undergraduate student with a strong interest in web development, programming, and technology. I am passionate about creating modern, responsive, and user-friendly websites while continuously expanding my technical knowledge and problem-solving skills.</p>
+      <p>Currently interning at Pinnacle Labs, I'm working on real-world web development projects — from personal portfolios to full-stack applications — sharpening my front-end and back-end skills every day.</p>
+      <p>In addition to my technical background, I have completed a German Language Certification Course, which has enhanced my communication abilities and broadened my global perspective.</p>
+      <p>I believe great design is not just how something looks, but how it works. I'm committed to building websites that are both beautiful and highly functional.</p>
+    </div>
+    <div class="about-info">
+      <div class="info-card">
+        <div class="icon">👤</div>
+        <div>
+          <div class="label">Full Name</div>
+          <div class="value">Arpita Singh</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="icon">✉️</div>
+        <div>
+          <div class="label">Email</div>
+          <div class="value">Arpita15102006@gmail.com</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="icon">📞</div>
+        <div>
+          <div class="label">Phone</div>
+          <div class="value">+91 8090760294</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="icon">💼</div>
+        <div>
+          <div class="label">Role</div>
+          <div class="value">Web Development Intern – Pinnacle Labs</div>
+        </div>
+      </div>
+      <div class="info-card">
+  <div class="icon">💼</div>
+  <div>
+    <div class="label">LinkedIn</div>
+    <div class="value">
+      <a href="https://linkedin.com/in/arpita-singh-1572ba360" target="_blank">
+        View My Profile
+      </a>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I Know</div>
+  <div class="section-title">My Skills</div>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skills-grid">
+
+  <div class="skill-chip"><span class="skill-icon">💻</span>C</div>
+  <div class="skill-chip"><span class="skill-icon">⚙️</span>C++</div>
+  <div class="skill-chip"><span class="skill-icon">🐍</span>Python</div>
+  <div class="skill-chip"><span class="skill-icon">🧩</span>OOP</div>
+  <div class="skill-chip"><span class="skill-icon">📊</span>MATLAB</div>
+  <div class="skill-chip"><span class="skill-icon">🌐</span>HTML5</div>
+  <div class="skill-chip"><span class="skill-icon">🎨</span>CSS3</div>
+  <div class="skill-chip"><span class="skill-icon">⚡</span>JavaScript</div>
+  <div class="skill-chip"><span class="skill-icon">⚙️</span>Back-End Basics</div>
+  <div class="skill-chip"><span class="skill-icon">📐</span>AutoCAD</div>
+  </div>
+</section>
+<section id="achievements">
+  <div class="section-label">Achievements</div>
+  <div class="section-title">Sports & Certifications</div>
+  <div class="divider"></div>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <span class="level level-intermediate">Sports</span>
+      <h3>AIU Rugby Player</h3>
+      <p>
+        Represented my institution in the All India Universities (AIU) Rugby Championship, demonstrating teamwork, discipline, leadership, and competitive sportsmanship.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <span class="level level-beginner">Certification</span>
+      <h3>German Language Certification</h3>
+      <p>
+        Successfully completed a German Language Certification Course, enhancing communication skills and cross-cultural understanding.
+      </p>
+    </div>
+
+  </div>
+</section>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">My Work</div>
+  <div class="section-title">Projects</div>
+  <div class="divider"></div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <span class="level level-beginner">Beginner</span>
+      <h3>Personal Portfolio Website</h3>
+      <p>A responsive portfolio site using HTML, CSS, and JavaScript to showcase my skills and projects professionally.</p>
+    </div>
+    
+    <div class="project-card">
+      <span class="level level-beginner">Beginner</span>
+      <h3>Calculator</h3>
+      <p>An online calculator for basic math operations — addition, subtraction, multiplication, and division.</p>
+    </div>
+    <div class="project-card">
+      <span class="level level-intermediate">Intermediate</span>
+      <h3>Restaurant Website</h3>
+      <p>A dynamic restaurant site with menus, reservation features, and event listings to enhance the dining experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <div class="section-title">Contact Me</div>
+  <div class="divider"></div>
+  <div class="contact-layout">
+    <div class="contact-info">
+      <p>Have a project in mind or just want to say hello? I'd love to hear from you. Send me a message and I'll get back to you as soon as possible!</p>
+      <div class="contact-detail">
+        <div class="c-icon">✉️</div>
+        <a href="mailto:Arpita15102006@gmail.com">Arpita15102006@gmail.com</a>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">📞</div>
+        <span>+91 8090760294</span>
+      </div>
+      <div class="contact-detail">
+  <div class="c-icon">💼</div>
+  <a href="https://linkedin.com/in/arpita-singh-1572ba360" target="_blank">
+    linkedin.com/in/arpita-singh-1572ba360
+  </a>
+</div>
+      <div class="contact-detail">
+        <div class="c-icon">📍</div>
+        <span>India</span>
+      </div>
+    </div>
+   
+    <div class="mail-form">
+      <h3>Send Me a Message</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="senderName" placeholder="John Doe"/>
+      </div>
+      <div class="form-group">
+        <label>Your Email</label>
+        <input type="email" id="senderEmail" placeholder="john@example.com"/>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" id="senderSubject" placeholder="Project Collaboration"/>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="senderMessage" placeholder="Write your message here..."></textarea>
+      </div>
+      <button class="send-btn" onclick="sendMail()">✉ Send Message</button>
+      <div class="toast" id="toast">✅ Opening your email client to send the message!</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & built by <span>Arpita Singh</span> · 2026 · All rights reserved</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+(function() {
+    emailjs.init({
+        publicKey: "GSQdzEENjOgGKwML8",
+    });
+})();
+</script>
+
+<script>
+function sendMail() {
+
+    const name = document.getElementById("senderName").value.trim();
+    const email = document.getElementById("senderEmail").value.trim();
+    const subject = document.getElementById("senderSubject").value.trim();
+    const message = document.getElementById("senderMessage").value.trim();
+
+    if (!name || !email || !message) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    const btn = document.querySelector(".send-btn");
+    btn.innerHTML = "Sending...";
+    btn.disabled = true;
+
+    const templateParams = {
+        from_name: name,
+        from_email: email,
+        subject: subject,
+        message: message,
+        to_name: "Arpita Singh"
+    };
+
+    emailjs.send(
+        "service_2wy25lq",
+        "template_hv7evho",
+        templateParams
+    )
+    .then(function() {
+
+        const toast = document.getElementById("toast");
+        toast.innerHTML = "✅ Message sent successfully!";
+        toast.style.display = "block";
+
+        document.getElementById("senderName").value = "";
+        document.getElementById("senderEmail").value = "";
+        document.getElementById("senderSubject").value = "";
+        document.getElementById("senderMessage").value = "";
+
+        btn.innerHTML = "✉ Send Message";
+        btn.disabled = false;
+
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 5000);
+
+    })
+    .catch(function(error) {
+
+        btn.innerHTML = "✉ Send Message";
+        btn.disabled = false;
+
+        alert("EmailJS Error: " + JSON.stringify(error));
+        console.error(error);
+    });
+}
+</script>
+
+</body>
+</html>
